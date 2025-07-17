@@ -1,3 +1,5 @@
+#DataTypes
+
 a=1
 print(a)
 b="Aryan" #String data type
