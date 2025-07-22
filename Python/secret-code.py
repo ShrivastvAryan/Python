@@ -1,34 +1,43 @@
+# Write a python program to translate a message into secret code language. Use the rules below to translate normal English into secret code language
 
-def coding():
-    a=input("Enter the word:")
+# Coding:
+# if the word contains atleast 3 characters, remove the first letter and append it at the end
+#   now append three random characters at the starting and the end
+# else:
+#   simply reverse the string
 
-    b=input("You want to code the message Yes/No: ")
+# Decoding:
+# if the word contains less than 3 characters, reverse it
+# else:
+#   remove 3 random characters from start and end. Now remove the last letter and append it to the beginning
+# Your program should ask whether you want to code or decode
 
-    if(b=='Yes'):
-        if(len(a)<3):
-            coded_small=a[::-1]
-            return coded_small
-        else:
-            a=a[::-1]
-            c=a[0:2]
-            coded_large=a[2]+c
-            return coded_large
-
+st = input("Enter message")
+words = st.split(" ")
+coding = input("1 for Coding or 0 for Decoding")
+coding = True if (coding=="1") else False
+print(coding)
+if(coding):
+  nwords = []
+  for word in words:
+    if(len(word)>=3):
+      r1 = "dsf"
+      r2 = "jkr"
+      stnew = r1+ word[1:] + word[0] + r2
+      nwords.append(stnew)
     else:
-        print("You dont want to code the text")
+      nwords.append(word[::-1])
+  print(" ".join(nwords))
 
-
-def decoding():
-    decoding=input("Do u want to decode Yes/No: ")
-
-    if(decoding=='Yes'):
-        if(coded_small):
-            decoded_small=coded_small[::-1]
-            print('Decoded word is: ',decoded_small)
-        else:
-            decoded_large=coded_large[::-1]
-            decoded_large=decoded_large-coded_large
-            print('decoded one is:',decoded_large)
-
-
-        
+else:
+  nwords = []
+  for word in words:
+    if(len(word)>=3): 
+      stnew = word[3:-3]
+      stnew = stnew[-1] + stnew[:-1]
+      nwords.append(stnew)
+    else:
+      nwords.append(word[::-1])
+  print(" ".join(nwords))
+  
+  
