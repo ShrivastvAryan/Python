@@ -6,6 +6,9 @@ f=open('myfile.txt','r')
 
 #rb for opening binary file
 
+#always close the file
+#or use with.open('myfile.txt','a') as f:
+
 
 text=f.read()
 print(text)
