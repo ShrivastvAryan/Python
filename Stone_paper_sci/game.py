@@ -1,39 +1,66 @@
 import random
-# Stone Paper Scissor
-#here stone is 1 , paper is 0, scissor is -1
 
-game_list=[1,0,-1]
+# A simple Stone, Paper, Scissors game.
+# We'll use a standard mapping for clarity:
+# Stone: 0
+# Paper: 1
+# Scissor: 2
 
-print('Hi there welcome to the Stone Paper Scissor game')
+def check(comp, user):
+    """
+    Checks the winner of a Stone, Paper, Scissors round.
+    Returns:
+         0 if it's a draw.
+         1 if the user wins.
+        -1 if the computer wins.
+    """
+    # Draw condition
+    if comp == user:
+        return 0
 
-print('---------------------------------------------')
+    # User winning conditions
+    # User (Paper: 1) beats Comp (Stone: 0)
+    # User (Scissor: 2) beats Comp (Paper: 1)
+    # User (Stone: 0) beats Comp (Scissor: 2)
+    if (user == 1 and comp == 0) or \
+       (user == 2 and comp == 1) or \
+       (user == 0 and comp == 2):
+        return 1
 
-print('So let me tell you the rules of game\n' \
-'Stone=1 \nPaper=0 \nScissor=-1\n')
+    # If it's not a draw and the user didn't win, the computer must have won.
+    return -1
 
-b=random.choice(game_list)
-# print(b)
+# --- Main Game Logic ---
 
-a=int(input("Enter the number of stone, paper or scissor: "))
+# A dictionary to map numbers to their names for easy printing
+choice_names = {0: "Stone", 1: "Paper", 2: "Scissor"}
 
+# Get computer's choice
+# random.randint(0, 2) will pick 0, 1, or 2 randomly
+comp_choice = random.randint(0, 2)
 
-if(a==b):
-    print('Draw')
+# Get user's input
+try:
+    user_choice = int(input("Enter your choice (0 for Stone, 1 for Paper, 2 for Scissor): "))
 
-#Stone logic
-elif(a==1 and b==0):
-    print('You lost')
-elif(a==1 and b==-1):
-    print('You won')
+    # Validate user input
+    if user_choice not in [0, 1, 2]:
+        print("Invalid choice! Please enter 0, 1, or 2.")
+    else:
+        print("---")
+        print(f"Your choice: {choice_names[user_choice]}")
+        print(f"Computer's choice: {choice_names[comp_choice]}")
+        print("---")
 
-#Scissor logic
-elif(a==-1 and b==0):
-    print('You won')
-elif(a==-1 and b==1):
-    print('You lost')
+        # Determine the winner by calling the check function
+        result = check(comp_choice, user_choice)
 
-#Paper logic
-elif(a==0 and b==1):
-    print('You won')
-elif(a==0 and b==-1):
-    print('You lost')
+        if result == 0:
+            print("It's a Draw! 🤝")
+        elif result == 1:
+            print("Congratulations! You Win! 🎉")
+        else:
+            print("Sorry, the Computer Wins. 💻")
+
+except ValueError:
+    print("Invalid input! You must enter a number.")
