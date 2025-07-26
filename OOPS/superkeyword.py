@@ -5,7 +5,7 @@ class ParentClass:
 class ChildClass(ParentClass):
     def parent_method(self):
         print('Aryan')
-        super().parent_method()
+        super().parent_method() #this is the inheritation 
     def child_method(self):
         print('this is the child method')
         super().parent_method()
