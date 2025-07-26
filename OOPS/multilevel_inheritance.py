@@ -15,6 +15,13 @@ class Dog(Animal):
     def make_sound(self):
         print("Bark")
 
+class GoldenRe(Dog):
+    def __init__(self, color):
+        Dog.__init__(self,name='Dog', breed='Golden Re')
+        self.color = color
+
+#this is multilevel inheritance , GoldenRe inherits from Dog
+
 class Cat(Animal):
     def __init__(self, name, breed,color):
         Animal.__init__(self,name, "Cat")
@@ -36,4 +43,7 @@ a.make_sound()
 
 c=Cat('Kitty','Siamese','White')
 c.make_sound()
+
+g=GoldenRe('Golden')
+print(g.color)
 
