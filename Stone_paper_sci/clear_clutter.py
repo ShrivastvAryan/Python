@@ -7,7 +7,7 @@ i=1
 for file in files:
         if file.endswith('.jpeg'):
             print(file)
-            os.rename(f'./images/{file}',f'./images/bg-{i}.jpeg')
+            os.rename(f'./images/{file}',f'./images/img-{i}.jpeg')
             i=i+1
 
 
